@@ -1,0 +1,10 @@
+{
+  "port": 3000,
+  "dbURI": "mongodb+srv://jahongirf04:13361441@cluster0.flyunw1.mongodb.net/eNavbat?retryWrites=true&w=majority",
+  "secret": "MyVeryVerySecretKey",
+  "access_key": "BuAccessuchunMaxfiyKalit",
+  "refresh_key": "BuRefreshuchunMaxfiyKalit",
+  "access_time": "15m",
+  "refresh_time": "30d",
+  "refresh_ms": 2592000000
+}
