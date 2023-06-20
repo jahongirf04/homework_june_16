@@ -143,6 +143,35 @@ const LogOut = async (req, res) => {
   }
 };
 
+const refreshingToken = async (req, res) => {
+  const refreshToken = req.headers.cookie.split("=")[1];
+  if (!refreshToken)
+    return res.status(400).send({ messgae: "Token topilmadi" });
+  const DataFromCookie = await Mongo.findOne({
+    token: req.headers.cookie.split("=")[1],
+  });
+  const DataFromDB = await Mongo.findOne({ token: refreshToken });
+  if (!DataFromCookie || !DataFromDB) {
+    return res.status(400).send({ message: "User ro'yhatdan o'tmagan" });
+  }
+  const argum = await Mongo.findById(DataFromCookie.id);
+  if (!argum) return res.status(400).send({ message: "ID noto'g'ri" });
+
+  const payload = {
+    id: argum._id,
+    name: argum.name,
+    price: argum.price,
+  };
+  const tokens = myJwt.generateTokens(payload);
+  argum.token = tokens.refreshToken;
+  await argum.save();
+  res.cookie("refreshToken", tokens.refreshToken, {
+    maxAge: config.get("refresh_ms"),
+    httpOnly: true,
+  });
+  res.status(200).send({ ...tokens });
+};
+
 module.exports = {
   add,
   get,
@@ -151,4 +180,5 @@ module.exports = {
   deleteOne,
   logIn,
   LogOut,
+  refreshingToken,
 };

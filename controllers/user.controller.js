@@ -5,6 +5,7 @@ const Mongo = require("../models/user");
 const config = require("config");
 
 const myJwt = require("../services/jwt-service");
+const user = require("../models/user");
 
 // const generateAccessToken = (id, name, email) => {
 //   const payload = {
@@ -135,6 +136,33 @@ const logOutUser = async (req, res) => {
   }
 };
 
+const refreshingToken = async (req, res) => {
+  const { refreshToken } = req.headers.cookie;
+  if (!refreshToken)
+    return res.status(400).send({ messgae: "Token topilmadi" });
+  const userDataFromCookie = req.headers.cookie;
+  const userDataFromDB = await Mongo.findOne({ user_token: refreshToken });
+  if (!userDataFromCookie || !userDataFromDB) {
+    return res.status(400).send({ message: "User ro'yhatdan o'tmagan" });
+  }
+  const user = await Mongo.findById(userDataFromCookie.id);
+  if (!user) return res.status(400).send({ message: "ID noto'g'ri" });
+
+  const payload = {
+    id: user._id,
+    name: user.name,
+    email: user.email,
+  };
+  const tokens = myJwt.generateTokens(payload);
+  user.user_token = tokens.refreshToken;
+  await user.save();
+  res.cookie("refreshToken", tokens.refreshToken, {
+    maxAge: config.get("refresh_ms"),
+    httpOnly: true,
+  });
+  res.status(200).send({ ...tokens });
+};
+
 module.exports = {
   add,
   get,
@@ -142,4 +170,5 @@ module.exports = {
   update,
   deleteOne,
   logOutUser,
+  refreshingToken,
 };
