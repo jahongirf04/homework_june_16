@@ -6,5 +6,16 @@
   "refresh_key": "BuRefreshuchunMaxfiyKalit",
   "access_time": "30s",
   "refresh_time": "30d",
-  "refresh_ms": 2592000000
+  "refresh_ms": 2592000000,
+  "smtp_host": "smtp.gamil.com",
+  "smtp_port": 587,
+  "smtp_user": "jahongirf04@gmail.com",
+  "smtp_password": "gpussgvpfsswhtux",
+  "api_url": "http://localhost:3000",
+
+
+  "db_host": "localhost",
+  "db_username": "postgres",
+  "db_password": "root",
+  "db_port": 5332
 }

@@ -4,6 +4,8 @@ const { idChecking } = require("../helpers/idChecker");
 const Mongo = require("../models/category");
 const { default: mongoose } = require("mongoose");
 
+const mongoProducts = require("../models/products");
+
 const myJwt = require("../services/jwt-service");
 
 const config = require("config");
@@ -167,6 +169,40 @@ const refreshingToken = async (req, res) => {
     httpOnly: true,
   });
   res.status(200).send({ ...tokens });
+};
+
+const hihgestLowestEachCategory = async (req, res) => {
+  try {
+    const data1 = await Mongo.find();
+    const category_prices = new Array();
+    data1.forEach(async (element) => {
+      const product = await mongoProducts.find({ category_id: element._id });
+      const element_name = element.name;
+      const prices = new Array();
+      product.forEach((elem) => {
+        prices.push(elem.price);
+      });
+      category_prices.push({
+        element_name: element_name,
+        prices: prices,
+      });
+      const result = new Array();
+      category_prices.forEach((element) => {
+        result.push({
+          element_name: element.element_name,
+          highest_price: Math.max(...element.prices),
+          lowest_price: Math.min(...element.prices),
+        });
+      });
+      res.status(200).send({ result });
+    });
+  } catch (e) {
+    const message = e.message;
+    console.log(message);
+    res.status(400).send({
+      message,
+    });
+  }
 };
 
 module.exports = {

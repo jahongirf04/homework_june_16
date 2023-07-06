@@ -32,7 +32,7 @@ const get = async (req, res) => {
 
     const argums = await Mongo.find();
     if (!argums) {
-      return res.status(400).send({ message: "Hech narsa opilmadi" });
+      return res.status(400).send({ message: "Hech narsa topilmadi" });
     }
     res.json({ argums });
   } catch (error) {

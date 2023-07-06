@@ -82,6 +82,63 @@ const deleteOne = async (req, res) => {
   }
 };
 
+const search = async (req, res) => {
+  try {
+    const { id } = req.body;
+    const result = await Mongo.find({ user_id: id })
+      .populate(user_id)
+      .populate({
+        path: product_id,
+        populate: category_id,
+      });
+    res.status(200).send({
+      message: result,
+    });
+  } catch (e) {
+    const message = e.message;
+    console.log(e.message);
+    res.status(404).send({
+      message: message,
+    });
+  }
+};
+
+const calculateTotalAmount = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await Mongo.find({ user_id: id });
+    var totalAmount = 0;
+    data.forEach((amount) => {
+      totalAmount = totalAmount + amount.total_amount;
+    });
+    res.status(200).send({ result: totalAmount });
+  } catch (e) {
+    const message = e.message;
+    console.log(message);
+    res.status(400).send({
+      message,
+    });
+  }
+};
+
+const highestTotalAmount = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await Mongo.find({ user_id: id });
+    var amounts = new Array();
+    data.forEach((amount) => {
+      amounts.push(amount.total_amount);
+    });
+    res.status(200).send({ result: Math.max(...amounts) });
+  } catch (e) {
+    const message = e.message;
+    console.log(message);
+    res.status(400).send({
+      message,
+    });
+  }
+};
+
 module.exports = {
   add,
   get,

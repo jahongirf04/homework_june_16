@@ -30,6 +30,7 @@ module.exports = async function (req, res, next) {
     if (error) {
       return res.status(403).json({ message: error.message });
     }
+    req.user = decodedToken;
 
     next();
   } catch (e) {

@@ -16,6 +16,13 @@ const collection = new Schema({
   user_token: {
     type: String,
   },
+  user_activation_link: {
+    type: String,
+  },
+  user_is_active: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = model("users", collection);

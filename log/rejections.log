@@ -1,0 +1,34 @@
+2023-06-22T07:05:07.945Z [undefined] [31merror[39m: uncaughtException: metadata is not defined
+ReferenceError: metadata is not defined
+    at Object.<anonymous> (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\middleware\expressWinstonLogger.js:14:32)
+    at Module._compile (node:internal/modules/cjs/loader:1254:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1308:10)
+    at Module.load (node:internal/modules/cjs/loader:1117:32)
+    at Module._load (node:internal/modules/cjs/loader:958:12)
+    at Module.require (node:internal/modules/cjs/loader:1141:19)
+    at require (node:internal/modules/cjs/helpers:110:18)
+    at Object.<anonymous> (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\app.js:17:30)
+    at Module._compile (node:internal/modules/cjs/loader:1254:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1308:10)
+2023-06-24T03:46:07.098Z [undefined] [31merror[39m: unhandledRejection: Cannot set headers after they are sent to the client
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:399:5)
+    at ServerResponse.setHeader (node:_http_outgoing:645:11)
+    at ServerResponse.header (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\node_modules\express\lib\response.js:794:10)
+    at ServerResponse.send (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\node_modules\express\lib\response.js:174:12)
+    at ServerResponse.json (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\node_modules\express\lib\response.js:278:15)
+    at ServerResponse.send (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\node_modules\express\lib\response.js:162:21)
+    at errorHandler (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\helpers\error_handler.js:2:19)
+    at getOne (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\controllers\products.controller.js:56:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2023-06-24T03:57:02.322Z [undefined] [31merror[39m: unhandledRejection: Cannot set headers after they are sent to the client
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:399:5)
+    at ServerResponse.setHeader (node:_http_outgoing:645:11)
+    at ServerResponse.header (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\node_modules\express\lib\response.js:794:10)
+    at ServerResponse.send (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\node_modules\express\lib\response.js:174:12)
+    at ServerResponse.json (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\node_modules\express\lib\response.js:278:15)
+    at ServerResponse.send (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\node_modules\express\lib\response.js:162:21)
+    at errorHandler (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\helpers\error_handler.js:2:19)
+    at getOne (C:\Users\victus by hp\OneDrive\Desktop\My codes\NodeJS\Second ten\NodeJS_15\eNavbat\controllers\products.controller.js:56:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)

@@ -10,6 +10,7 @@ const {
   deleteOne,
   logOutUser,
   refreshingToken,
+  activate,
 } = require("../controllers/user.controller");
 
 const userPolice = require("../middleware/userPolice");
@@ -30,5 +31,7 @@ router.delete("/:id", deleteOne);
 router.post("/logout", Validator("user"), logOutUser);
 
 router.post("/refresh", refreshingToken);
+
+router.get("/activate/:link", activate);
 
 module.exports = router;
